@@ -25,12 +25,12 @@ zsh \
 RUN chsh -s `which zsh`
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 RUN ~/.fzf/install
-RUN git clone --separate-git-dir=$HOME/.dotfiles https://github.com/chewrocca/.dotfiles.git tmpdotfiles
-RUN git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-RUN git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+RUN git clone --separate-git-dir=$HOME/.dotfiles https://github.com/chewrocca/.dotfiles.git tmpdotfiles && \
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh && \
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k && \
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions && \
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 RUN rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
 RUN rm -r tmpdotfiles
 RUN git clone https://github.com/powerline/fonts.git --depth=1
