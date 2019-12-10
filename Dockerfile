@@ -6,6 +6,7 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
 ADD dotenv /root/.dotenv
+
 RUN apt update -y && \
 apt install -y bat \
 build-essential \
@@ -35,4 +36,5 @@ RUN git clone https://github.com/powerline/fonts.git --depth=1 && ./fonts/instal
 RUN vim --not-a-term +'PlugInstall --sync' +qall
 RUN python3 ~/.vim/plugged/YouCompleteMe/install.py
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && pip3 install tldr
+
 WORKDIR /home
